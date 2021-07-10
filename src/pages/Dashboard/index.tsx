@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import { Header } from "../../components/Header";
 import { NewTransactionModal } from '../../components/NewTransactionModal';
@@ -7,7 +7,6 @@ import { TransactionsProvider } from '../../hooks/useTransactions';
 import { Summary } from '../../components/Summary';
 import { TransactionsTable } from '../../components/TransactionsTable';
 import { Container } from './styles';
-import { useAuth } from '../../hooks/useAuth';
 
 export function Dashboard() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
