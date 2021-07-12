@@ -3,7 +3,7 @@ import { Container } from "./styles";
 
 export function TransactionsTable() {
     const { transactions } = useTransactions();
-
+    
     return (
       <Container>
         <table>
@@ -29,7 +29,7 @@ export function TransactionsTable() {
                 <td>{transaction.category}</td>
                 <td>
                   {new Intl.DateTimeFormat('pt-BR').format(
-                      new Date(transaction.createdAt)
+                      new Date(transaction.created_at)
                   )}
                 </td>
               </tr>

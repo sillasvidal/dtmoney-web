@@ -1,31 +1,37 @@
-import { FormEvent, useCallback, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { api } from "../../services/api";
 
 import { Container, SignInForm } from "./styles";
 
 export const SignUp: React.FC = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { signIn } = useAuth();
     const history = useHistory();
 
-    const handleSignInFormSubmit = useCallback(async (event: FormEvent) => {
+    async function handleSignUpFormSubmit(event: FormEvent) {
         event.preventDefault()
 
-        await signIn({
+        await api.post('users', {
+            name,
             email,
             password
         });
 
-        history.push('/dashboard');
-    }, [signIn, history, email, password]);
+        history.push('/');
+    };
 
     return (
         <Container>
-            <SignInForm onSubmit={handleSignInFormSubmit}>
+            <SignInForm onSubmit={handleSignUpFormSubmit}>
                 <h2>Faça o seu Cadastro</h2>
+                <input
+                    placeholder="Nome" 
+                    value={name}
+                    onChange={event => setName(event.target.value)}
+                />
                 <input
                     placeholder="E-mail" 
                     value={email}
